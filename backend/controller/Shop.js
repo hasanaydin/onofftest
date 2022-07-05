@@ -36,24 +36,29 @@ routes.post('/setCartItem', (req, res) => {
   }
 
   let existItems = getItems(cartDataPath)
-  existItems.push({ "id":createUniqId(), shopItemId, productName });
+  existItems.push({ "id": createUniqId(), shopItemId, productName });
 
   setItemsToCart(existItems);
-  res.send({ success: true, msg: 'Cart item added successfully' })
+  res.send(getItems(cartDataPath));
 })
 
 routes.delete('/delCartItem/', (req, res) => {
-
 
   const id = req.body.id ? req.body.id.trim() : '';
   if (id === undefined || id === '') {
     return res.send({ success: false, msg: 'Data not valid' });
   }
+
   var existItems = getItems(cartDataPath)
 
-  delete existItems[id];
+  const indexOfObject = existItems.findIndex(object => {
+    return object.id === id;
+  });
+  
+  indexOfObject!==-1 && existItems.splice(indexOfObject, 1);
+
   setItemsToCart(existItems);
-  res.send({ success: true, msg: 'Cart item deleted successfully' })
+  res.send(getItems(cartDataPath));
 
 })
 module.exports = routes
