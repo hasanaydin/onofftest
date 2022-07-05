@@ -14,20 +14,15 @@ const setItemsToCart = (data) => {
   const stringifyData = JSON.stringify(data)
   fs.writeFileSync(cartDataPath, stringifyData)
 }
-routes.get('/', (req, res) => {
-  res.send({ success: true, msg: 'express is working' })
-});
-
-routes.get('/getShopItems', (req, res) => {
+const getShopItems = ((req, res) => {
   res.send(getItems(shopDataPath));
-});
+})
 
-routes.get('/getCartItems', (req, res) => {
+const getCartItems = ((req, res) => {
   res.send(getItems(cartDataPath));
 });
 
-
-routes.post('/setCartItem', (req, res) => {
+const setCartItem = ((req, res) => {
   const shopItemId = req.body.shopItemId ? req.body.shopItemId.trim() : '';
   const productName = req.body.productName ? req.body.productName.trim() : '';
 
@@ -41,9 +36,7 @@ routes.post('/setCartItem', (req, res) => {
   setItemsToCart(existItems);
   res.send(getItems(cartDataPath));
 })
-
-routes.delete('/delCartItem/', (req, res) => {
-
+const delCartItem = ((req, res) => {
   const id = req.body.id ? req.body.id.trim() : '';
   if (id === undefined || id === '') {
     return res.send({ success: false, msg: 'Data not valid' });
@@ -61,4 +54,9 @@ routes.delete('/delCartItem/', (req, res) => {
   res.send(getItems(cartDataPath));
 
 })
-module.exports = routes
+module.exports = {
+  getShopItems,
+  getCartItems,
+  setCartItem,
+  delCartItem
+}
