@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import { feachCartItems, removeCartItems } from "../fatures/shopSlice";
+import { feachCartItems, removeCartItems } from "../store/shopSlice";
 import { useAppDispatch, useAppSelector } from "../store";
-import "./ShoppingCartTable.scss"
+import "../assets/ShoppingCartTable.scss"
 
 function ShoppingCartTable() {
     const dispacth = useAppDispatch();
@@ -9,8 +9,7 @@ function ShoppingCartTable() {
 
     useEffect(() => {
         dispacth(feachCartItems())
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [dispacth]);
 
     const del = (id: string) => {
         dispacth(removeCartItems(id));

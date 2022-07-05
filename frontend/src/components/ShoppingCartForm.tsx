@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
-
-import { feachShopItems, setCartItem } from "../fatures/shopSlice";
-
+import { feachShopItems, setCartItem } from "../store/shopSlice";
 import { useAppDispatch, useAppSelector } from "../store";
-import "./ShoppingCartForm.scss"
+import "../assets/ShoppingCartForm.scss"
 
 function ShoppingCartForm() {
     const [productName, setProductName] = useState("");
     const [selectedShopName, setSelectedShopName] = useState();
     const [shopNameError, setShopNameError] = useState(false);
     const [productNameError, setProductNameError] = useState(false);
-    const globlaState = useAppSelector(state => state.shop);
+    const globalState = useAppSelector(state => state.shop);
     const dispacth = useAppDispatch();
 
     const onSave = () => {
@@ -33,8 +31,7 @@ function ShoppingCartForm() {
 
     useEffect(() => {
         dispacth(feachShopItems())
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [dispacth]);
 
     return (
         <div className="shoppingCartForm-container">
@@ -45,11 +42,11 @@ function ShoppingCartForm() {
                 onChange={(e) => setProductName(e.currentTarget.value)}
                 placeholder="Name" />
 
-            {globlaState.shop.data && <select onChange={onShopOntionChange} defaultValue={'null'}
+            {globalState.shop.data && <select onChange={onShopOntionChange} defaultValue={'null'}
                 className={`shoppingCartForm-input shoppingCartForm-inputOption ${shopNameError ? 'shoppingCartForm-inputOption-error' : ''}`}
             >
                 <option value="null" disabled={true} >Select Shop</option>
-                {globlaState.shop.data.map((shopItem) => (
+                {globalState.shop.data.map((shopItem) => (
                     <option key={shopItem.id}>{shopItem.name}</option>
                 ))}
             </select>}

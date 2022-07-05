@@ -1,6 +1,6 @@
-import ShoppingCartTable from "./ShoppingCartTable";
-import ShoppingCartForm from "./ShoppingCartForm";
-import "./ShoppingCart.scss"
+import ShoppingCartTable from "../components/ShoppingCartTable";
+import ShoppingCartForm from "../components/ShoppingCartForm";
+import "../assets/ShoppingCart.scss";
 
 function ShoppingCart() {
     return (

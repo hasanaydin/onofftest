@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
-import shopSlice from "../fatures/shopSlice";
+import shopSlice from "./shopSlice";
 
 const store = configureStore({
     reducer: {
