@@ -1,0 +1,40 @@
+.shoppingCartTable-container {
+    padding: 24px 0;
+    .shoppingCartTable-item {
+        &-notice {
+            text-align: center;
+            font-size: 16px;
+            min-width: 830px;
+            &-empty {
+                color: #9298A2;
+            }
+            &-error {
+                color: #F54436;
+            }
+        }
+        display: flex;
+        padding: 0 40px;
+        &:nth-of-type(odd) {
+            background-color: #FBFBFB;
+        }
+        &:nth-of-type(even) {
+            background-color: #FFF;
+        }
+        .shoppingCartTable-itemRow {
+            flex: 1;
+            color: #273348;
+            line-height: 18px;
+            font-size: 16px;
+            padding: 10px 0;
+            min-width: 270px;
+            &:last-child {
+                min-width: 210px;
+            }
+        }
+        .shoppingCartTable-itemDelBtn {
+            background: none;
+            border: none;
+            color: #F54436;
+        }
+    }
+}
